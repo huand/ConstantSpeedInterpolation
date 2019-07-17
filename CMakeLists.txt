@@ -3,3 +3,5 @@ project( ImageInterp )
 find_package( OpenCV REQUIRED )
 add_executable( ImageInterp src/interp2frames.cc )
 target_link_libraries( ImageInterp ${OpenCV_LIBS} )
+
+add_executable( IdInterp src/FrameIdInterp.cc )
