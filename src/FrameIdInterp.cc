@@ -87,7 +87,7 @@ int main(int argc, char const *argv[]) {
   }
   // TODO(hubert): check if last x is <length
 
-  std::ofstream outfile("id.txt");
+  std::ofstream outfile("trajectory/id.txt");
 
   for (auto &&i : idata.id) {
     outfile << i << '\n';
