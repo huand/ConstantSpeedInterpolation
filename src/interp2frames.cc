@@ -1,9 +1,10 @@
 // Copyright 2019 Hubert Andre - Alstom
 
-#include "opencv2/highgui.hpp"
-#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/video/tracking.hpp"
-#include "opencv2/videoio.hpp"
+#include "opencv2/video/video.hpp"
+#include "opencv2/videoio/videoio.hpp"
 
 #include <iostream>
 
