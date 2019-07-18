@@ -42,6 +42,7 @@
     "condition_variable": "cpp",
     "optional": "cpp",
     "string_view": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "iomanip": "cpp"
   }
 }

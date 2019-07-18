@@ -75,7 +75,7 @@ int main(int argc, char const *argv[]) {
     i = i * data.length / data.d.back();
   }
   InterpData idata;
-  idata.step = 0.05;
+  idata.step = 0.04;
   // idata.step = 1;
   // idata.x.push_back(0);
   // idata.id.push_back(0);

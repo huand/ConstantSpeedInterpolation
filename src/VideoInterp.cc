@@ -31,12 +31,13 @@ int main(int argc, char const* argv[]) {
   cap >> frame2;
   int id = 0;
   int k = 0;
-  cv::namedWindow("frame1");
-  cv::namedWindow("frame2");
-  cv::namedWindow("interp frame");
+  // cv::namedWindow("frame1");
+  // cv::namedWindow("frame2");
+  // cv::namedWindow("interp frame");
   int nite = 0;
   for (auto&& i : i_id) {
     nite++;
+
     int id1 = floor(i);
     while (id != id1) {
       std::swap(frame1, frame2);
@@ -44,7 +45,6 @@ int main(int argc, char const* argv[]) {
       id++;
     }
     double t = i - id;
-
     cv::UMat uflow;
     cv::Mat gray1, gray2, flow;
     cvtColor(frame1, gray1, cv::COLOR_BGR2GRAY);
@@ -57,8 +57,8 @@ int main(int argc, char const* argv[]) {
     // int count[frame1.rows][frame1.cols];
     std::vector<std::vector<int>> count1(frame1.rows,
                                          std::vector<int>(frame1.cols, 0));
-    for (size_t y = 0; y < frame1.rows; y++) {
-      for (size_t x = 0; x < frame1.cols; x++) {
+    for (int y = 0; y < frame1.rows; y++) {
+      for (int x = 0; x < frame1.cols; x++) {
         const cv::Point2f& fxy = flow.at<cv::Point2f>(y, x);
         int tx = cvRound(x + fxy.x * t);
         int ty = cvRound(y + fxy.y * t);
@@ -66,7 +66,8 @@ int main(int argc, char const* argv[]) {
             y + fxy.y >= 0 && x + fxy.x >= 0) {
           cv::Vec3b color1 = frame1.at<cv::Vec3b>(y, x);
           cv::Vec3b color2 = frame2.at<cv::Vec3b>(y + fxy.y, x + fxy.x);
-          cv::Vec3i newcolor = color1 * (1 - t) + color2 * t;
+          cv::Vec3i newcolor =
+              color1 * (1 - t) + color2 * t;  // TODO(hubert): HSV
           cv::Vec3i mergecolor =
               cv::Vec3i(iframe1.at<cv::Vec3b>(ty, tx)) * count1[ty][tx] +
               newcolor;
@@ -87,8 +88,8 @@ int main(int argc, char const* argv[]) {
     // int count[frame1.rows][frame1.cols];
     std::vector<std::vector<int>> count2(frame1.rows,
                                          std::vector<int>(frame1.cols, 0));
-    for (size_t y = 0; y < frame1.rows; y++) {
-      for (size_t x = 0; x < frame1.cols; x++) {
+    for (int y = 0; y < frame1.rows; y++) {
+      for (int x = 0; x < frame1.cols; x++) {
         const cv::Point2f& fxy = flow.at<cv::Point2f>(y, x);
         int tx = cvRound(x + fxy.x * t);
         int ty = cvRound(y + fxy.y * t);
@@ -123,6 +124,7 @@ int main(int argc, char const* argv[]) {
         }
       }
     }
+    std::swap(frame1, frame2);
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
@@ -142,8 +144,8 @@ int main(int argc, char const* argv[]) {
     // cv::imshow("frame1", frame1);
     // cv::imshow("frame2", frame2);
     // cv::imshow("interp frame", iframe);
-    std::cout << static_cast<double>(k) / i_id.size() << " %\n";
-    std::cout << "t: " << t << std::endl;
+    std::cout << static_cast<double>(k) / i_id.size() * 100 << " %\n";
+
     cv::waitKey(1);
   }
   return 0;
