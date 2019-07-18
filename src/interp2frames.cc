@@ -18,8 +18,7 @@ static void drawOptFlowMap(const cv::Mat& flow, cv::Mat& cflowmap, int step,
     }
 }
 
-static cv::Mat ComputeInterpFrame(const cv::Mat& frame1, const cv::Mat& frame2,
-                                  double t) {
+cv::Mat ComputeInterpFrame(cv::Mat frame1, cv::Mat frame2, double t) {
   //////
   cv::Mat flow;
   cv::UMat gray, prevgray;
@@ -81,14 +80,14 @@ static cv::Mat ComputeInterpFrame(const cv::Mat& frame1, const cv::Mat& frame2,
       }
     }
   }
-  return iframe;
+  return iframe.clone();
 }
-int main(int argc, char** argv) {
-  cv::Mat frame1, frame2;
-  frame1 = cv::imread("/home/home/Pictures/1a.png");
-  frame2 = cv::imread("/home/home/Pictures/1b.png");
-  cv::Mat iframe = ComputeInterpFrame(frame1, frame2, 0.35);
-  imshow("interpolated frame", iframe);
-  cv::waitKey(0);
-  return 0;
-}
+// int main(int argc, char** argv) {
+//  cv::Mat frame1, frame2;
+//  frame1 = cv::imread("/home/home/Pictures/1a.png");
+//  frame2 = cv::imread("/home/home/Pictures/1b.png");
+//  cv::Mat iframe = ComputeInterpFrame(frame1, frame2, 0.35);
+//  imshow("interpolated frame", iframe);
+//  cv::waitKey(0);
+//  return 0;
+//}

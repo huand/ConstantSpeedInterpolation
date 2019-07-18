@@ -75,15 +75,16 @@ int main(int argc, char const *argv[]) {
     i = i * data.length / data.d.back();
   }
   InterpData idata;
-  idata.step = 0.05;
-  idata.x.push_back(0);
-  idata.id.push_back(0);
+  // idata.step = 0.05;
+  idata.step = 1;
+  // idata.x.push_back(0);
+  // idata.id.push_back(0);
   k = 0;
-  while (idata.x.back() < data.length) {
-    k++;
+  while (k * idata.step < data.length) {
     double xq = k * idata.step;
     idata.x.push_back(xq);
     idata.id.push_back(interp(data.d, data.id, xq));
+    k++;
   }
   // TODO(hubert): check if last x is <length
 

@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 project( ImageInterp )
 find_package( OpenCV REQUIRED )
-add_executable( ImageInterp src/interp2frames.cc )
-target_link_libraries( ImageInterp ${OpenCV_LIBS} )
+# add_executable( ImageInterp src/interp2frames.cc )
+# target_link_libraries( ImageInterp ${OpenCV_LIBS} )
 
 add_executable( IdInterp src/FrameIdInterp.cc )
+
+add_executable( VideoInterp
+src/VideoInterp.cc
+src/interp2frames.cc
+)
+target_link_libraries( VideoInterp ${OpenCV_LIBS} )
