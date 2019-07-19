@@ -74,6 +74,20 @@ int main(int argc, char const *argv[]) {
   for (auto &&i : data.d) {
     i = i * data.length / data.d.back();
   }
+  infile.close();
+  // Load new d there:
+  infile.open("trajectory/distance_corrected.csv");
+  k = 0;
+  while (infile >> x) {
+    data.d[k] = x;
+    k++;
+  }
+
+  for (auto &&i : data.d) {
+    std::cout << k << '\t' << std::setprecision(19) << i << std::endl;
+  }
+
+  // end of new load
   InterpData idata;
   idata.step = 0.04;
   // idata.step = 1;

@@ -19,3 +19,6 @@ src/VideoInterp.cc
 src/interp2frames.cc
 )
 target_link_libraries( VideoInterp ${OpenCV_LIBS} )
+
+add_executable(ControlVideo src/ControlVideo.cc)
+target_link_libraries(ControlVideo ${OpenCV_LIBS})
