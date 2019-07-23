@@ -46,7 +46,7 @@ double interp(std::vector<double> x, std::vector<double> y, double xq) {
 }
 
 int main(int argc, char const *argv[]) {
-  std::ifstream infile("trajectory/CEF_trajectory.txt");
+  std::ifstream infile("trajectory/trajectory2.txt");
   if (!infile)
     std::cout << "Couldn't Open the trajectory text file.." << std::endl;
   int id;
