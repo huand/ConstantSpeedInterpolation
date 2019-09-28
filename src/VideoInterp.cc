@@ -24,7 +24,7 @@ int main(int argc, char const* argv[]) {
     i_id.push_back(idd);
   }
 
-  cv::VideoCapture cap("/home/adlink/Videos/OneLap.mp4");
+  cv::VideoCapture cap("/media/hubert/disk1/backup_to_sort/OneLap.mp4");
 
   cap >> frame2;
   frame1 = frame2.clone();
